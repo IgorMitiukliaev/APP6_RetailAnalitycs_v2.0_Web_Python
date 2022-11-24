@@ -1,6 +1,6 @@
-# AP6.RetailAnalitycs v2.0 Web
+# RetailAnalitycs v2.0 Web
 
-Создание web-интерфейса для проекта SQL3
+Создание web-интерфейса для проекта SQL3 на языке Python.
 
 
 ## Contents
