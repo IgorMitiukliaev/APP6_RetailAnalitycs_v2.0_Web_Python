@@ -21,6 +21,8 @@ Web interface creation for SQL3 project in Python.
 
 ## Chapter I
 
+![APP6_Retail_Analitycs_V2.0](misc/images/APP6_Retail_Analitycs_V2.0.jpg)
+
 You entered another room. There were just white walls all around, and across the room was a vintage Macintosh I, quadrupled in size. No further introduction was necessary, as it was already clear who was in front of you. The computer screen lit up and a terminal appeared in front of you, on which numbers ran.
 
 *- "Among all the possible disguises you can take, you chose this? To annoy me?" you asked the computer."*
