@@ -191,3 +191,5 @@ Everyone gathered around the computer, hesitant to press the button to send and 
 `-` "Maybe, maybe not," John remarked melancholically.
 
 `-` "Okay, I'll press it," Thomas couldn't take it anymore. One click, a short wait, and nothing. Outside the window the birds were still singing and cars were still passing slowly. Everyone stood silently by the computer for a little while longer, and then silently began to pack as well. Finally, after saying goodbye at the front door they went away to their future in the new world...
+
+💡 [Tap here](https://forms.yandex.ru/cloud/64183074693872255fa1286e/) **to leave your feedback on the project**. Pedago Team really tries to make your educational experience better.
