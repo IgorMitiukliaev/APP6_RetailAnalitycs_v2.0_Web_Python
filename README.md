@@ -113,10 +113,10 @@ You need to implement a web application for the SQL3 project
 ### Content requirements
 
 - The main page must contain:
-  - A navigation menu that provides access to the main sections of the application: *"Data"* and *"Offerings"*.
+  - A navigation menu that provides access to the main sections of the application: *"Data"* and *"Suggestions"*.
   - An *"About"* field, which contains basic information about the student who completed the project
 
-- The graphical shell of *"Data"* and *"Proposals"* sections should contain the following sections:
+- The graphical shell of *"Data"* and *"Suggestions"* sections should contain the following sections:
   - A header that, when clicked, will take you to the home page
   - The navigation menu, which allows to navigate through the main sections
   - The content part of the section
