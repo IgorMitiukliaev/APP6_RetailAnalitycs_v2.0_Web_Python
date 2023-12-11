@@ -1,0 +1,7 @@
+django<=4.2.4
+autopep8<=2.0.2
+pycodestyle<=2.10.0
+psycopg2-binary<=2.9.7
+django-bootstrap-v5<=1.0.11
+wui-python-additions==0.1.2
+django-import-export<=3.3.1
