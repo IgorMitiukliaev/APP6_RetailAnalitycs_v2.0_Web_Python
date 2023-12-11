@@ -5,7 +5,7 @@ run: venv
 	. venv/bin/activate && python3 retail/manage.py runserver 
 
 create_models_from_db: venv
-	. venv/bin/activate && python3 retail/manage.py inspectdb > models.py
+	. venv/bin/activate && python3 retail/manage.py inspectdb > retail/retail/models.py
 
 tests: venv
 	. venv/bin/activate && python3.10 -m unittest

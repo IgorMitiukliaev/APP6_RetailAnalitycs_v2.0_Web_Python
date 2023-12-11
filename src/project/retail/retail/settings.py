@@ -79,10 +79,15 @@ WSGI_APPLICATION = 'retail.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        "OPTIONS": {
-            "service": "retail_service",
-            "passfile": ".pgpass",
-        },
+        'NAME': 'retail',
+        'USER': 'postgres',
+        'PASSWORD': 'qwerty',
+        'HOST': '127.0.0.1',
+        'PORT': '55432',
+        # "OPTIONS": {
+        #     "service": "retail_service",
+        #     "passfile": ".pgpass",
+        # },
     }
 }
 
