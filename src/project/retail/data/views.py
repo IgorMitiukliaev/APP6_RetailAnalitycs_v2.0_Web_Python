@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from data.models import Checks
 
-# Create your views here.
+
+def data_main(request):
+    return render(request, 'data_main.html')

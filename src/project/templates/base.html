@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>retail21</title>
+    <style>
+        .nav {
+            margin-bottom: 30px;
+        }
+        .btn {
+            margin: 0 10px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="nav bg-primary ">
+            <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'root' %}">To MainPage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'data_main' %}">Data</a>
+            </li>
+            <li class="nav-item"><a class="nav-link link-light" href="">Operations</a></li>
+        </ul>
+
+        {% if messages %}
+        <h3 style="color:red">Errors:</h3>
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red">{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}{% endblock content %}
+    </div>
+</body>
+
+</html>
