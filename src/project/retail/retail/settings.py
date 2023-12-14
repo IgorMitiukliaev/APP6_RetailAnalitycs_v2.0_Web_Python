@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'retail.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'retail',
+        'NAME': 'pgretail',
         'USER': 'postgres',
         'PASSWORD': 'qwerty',
         'HOST': '127.0.0.1',
