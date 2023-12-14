@@ -83,7 +83,7 @@ class Transactions(models.Model):
     transaction_summ = models.DecimalField(
         max_digits=12, decimal_places=3)
     transaction_datetime = models.DateTimeField()
-    transaction_store_id = models.ForeignKey('Stores', models.CASCADE)
+    transaction_store = models.ForeignKey('Stores', models.CASCADE)
 
     class Meta:
         managed = False
