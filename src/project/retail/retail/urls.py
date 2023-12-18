@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', root, name="root"),
     path('data/', include('data.urls')),
+    path('offer/', include('offer.urls'))
 
 ]

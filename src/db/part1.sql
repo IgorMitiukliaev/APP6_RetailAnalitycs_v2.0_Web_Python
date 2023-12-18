@@ -35,11 +35,19 @@ CONSTRAINT fk_group_id FOREIGN KEY (Group_ID) REFERENCES groups_sku(Group_ID) ON
 );
 --
 CREATE TABLE IF NOT EXISTS stores (
+Store_Rec_ID serial primary key not null,
 Transaction_Store_ID serial not null,
 SKU_ID serial,
 SKU_Purchase_Price decimal,
 SKU_Retail_Price decimal,
 CONSTRAINT fk_sku_id FOREIGN KEY (SKU_ID) REFERENCES sku(SKU_ID) ON DELETE CASCADE
+);
+--
+CREATE TEMPORARY TABLE IF NOT EXISTS stores_tmp (
+Transaction_Store_ID serial not null,
+SKU_ID serial,
+SKU_Purchase_Price decimal,
+SKU_Retail_Price decimal
 );
 --
 CREATE TABLE IF NOT EXISTS transactions (
@@ -88,7 +96,7 @@ copy groups_sku
 from E'/var/lib/postgresql/Groups_SKU.tsv' delimiter E'\t';
 copy sku
 from E'/var/lib/postgresql/SKU.tsv' delimiter E'\t';
-copy stores
+copy stores_tmp
 from E'/var/lib/postgresql/Stores.tsv' delimiter E'\t';
 copy transactions
 from E'/var/lib/postgresql/Transactions.tsv' delimiter E'\t';
@@ -113,11 +121,23 @@ select Transaction_ID,
 	SKU_Discount
 from checks_tmp;
 --
+INSERT INTO stores (
+Transaction_Store_ID,
+SKU_ID,
+SKU_Purchase_Price,
+SKU_Retail_Price
+)
+SELECT Transaction_Store_ID,
+	SKU_ID,
+	SKU_Purchase_Price,
+	SKU_Retail_Price
+from stores_tmp;
+--
 CREATE OR REPLACE FUNCTION "reset_sequence" (
-		tablename text,
-		columnname text,
-		sequence_name text
-	) RETURNS "pg_catalog"."void" AS $body$
+tablename text,
+columnname text,
+sequence_name text
+) RETURNS "pg_catalog"."void" AS $body$
 DECLARE BEGIN EXECUTE 'SELECT setval( ''' || sequence_name || ''', ' || '(SELECT MAX(' || columnname || ') FROM ' || tablename || ')' || ')';
 END;
 $body$ LANGUAGE 'plpgsql';
