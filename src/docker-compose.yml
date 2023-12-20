@@ -1,0 +1,30 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db: 
+    build:
+      context: ./db
+      dockerfile: ./Dockerfile
+    image: retail_postgres
+    container_name: retail_postgres    
+    volumes:
+      - pg_ret:/var/lib/postgresql    
+    env_file:
+      - ./db/db.env      
+    ports:
+      - 55432:5432
+    networks:
+      - retail_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d pgretail" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  pg_ret:
+
+networks:
+  retail_network:
