@@ -12,12 +12,12 @@ router.register(r'stores', StoresViewSet)
 router.register(r'transactions', TransactionsViewSet)
 
 urlpatterns = [
-    path('', data_main, name='data_main'),
+    # path('', data_main, name='data_main'),
     # router set
     # http://127.0.0.1:8000/data/api
     # http://127.0.0.1:8000/data/api/personaldata
     # http://127.0.0.1:8000/data/api/personaldata/5/
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
     # @action decorator
     # https://youtu.be/Ur24Ms-MD5k?si=YGIOZqO3dSHD2iYg&t=407
 
