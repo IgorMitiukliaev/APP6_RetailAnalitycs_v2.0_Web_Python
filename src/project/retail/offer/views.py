@@ -6,10 +6,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 import json
 import decimal
+from rest_framework.decorators import api_view, permission_classes
+from data.permissions import IsAdminOrReadOnly
 
 
 @csrf_protect
 @csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAdminOrReadOnly])
 def offer_main(request):
     if request.method == 'POST':
         option = request.POST.get('option')
