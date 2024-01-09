@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RetailApiServiceService } from '../retail-api-service.service';
-import { PersonalData } from '../personal-data';
+import { RetailApiServiceService } from '@services/retail-api-service.service';
+import { PersonalData } from '@classes/personal-data';
 
 @Component({
   selector: 'crud-view-component',

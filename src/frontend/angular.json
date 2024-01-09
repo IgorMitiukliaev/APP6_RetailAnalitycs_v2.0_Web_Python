@@ -33,7 +33,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/misc/info21-theme.scss",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -99,7 +98,6 @@
               "src/assets"
             ],
             "styles": [
-              {"input": "src/app/misc/info21-theme.scss"},
               "src/styles.scss"
             ],
             "scripts": []

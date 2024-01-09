@@ -31,7 +31,6 @@
       "@pages/*": ["app/pages/*"],
       "@classes/*": ["app/classes/*"],
       "@layouts/*": ["app/layouts/*"],
-      "@misc/*": ["app/misc/*"]
 
     }
   },

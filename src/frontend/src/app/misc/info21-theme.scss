@@ -28,8 +28,12 @@ $light-theme: mat.define-light-theme((
     color: (
         primary: mat.define-palette(colors-definitions.$palette-school21-primary, 900),
         accent: mat.define-palette(colors-definitions.$school21accent),
+        background: colors-definitions.$light-theme-background-palette,
+        foreground: colors-definitions.$light-theme-foreground-palette,
     ),
 ));
+
+mat.$theme-ignore-duplication-warnings: true;
 
 // Apply the dark theme by default
 @include mat.all-component-themes($dark-theme);
