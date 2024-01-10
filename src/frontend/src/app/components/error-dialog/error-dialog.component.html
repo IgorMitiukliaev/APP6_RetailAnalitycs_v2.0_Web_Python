@@ -1,0 +1,13 @@
+<mat-toolbar class="mat-warn">
+    <h2 class="mat-h2" mat-dialog-title>Error</h2>
+</mat-toolbar>
+<mat-card class="dialog">
+    <mat-dialog-content >
+        <p>{{error.message}}</p>
+        <p>Status: {{error.status}}</p>
+        <pre>{{error.stack}}</pre>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button color="warn" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</mat-card>
