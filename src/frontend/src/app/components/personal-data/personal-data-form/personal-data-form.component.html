@@ -1,0 +1,37 @@
+<h1>Edit Personal Data</h1>
+<form [formGroup]="personalDataForm" (ngSubmit)="save()">
+  <div class="form-group">
+    <label for="customer_id">Customer ID</label>
+    <input type="number" id="customer_id" formControlName="customer_id" readonly>
+  </div>
+  <div class="form-group">
+    <label for="customer_name">Customer Name</label>
+    <input type="text" id="customer_name" formControlName="customer_name" required>
+    <div *ngIf="personalDataForm.get('customer_name')?.invalid && personalDataForm.get('customer_name')?.touched">
+      <p class="error">Customer name is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="customer_surname">Customer Surname</label>
+    <input type="text" id="customer_surname" formControlName="customer_surname" required>
+    <div *ngIf="personalDataForm.get('customer_surname')?.invalid && personalDataForm.get('customer_surname')?.touched">
+      <p class="error">Customer surname is required.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="customer_primary_email">Customer Primary Email</label>
+    <input type="email" id="customer_primary_email" formControlName="customer_primary_email" required>
+    <div *ngIf="personalDataForm.get('customer_primary_email')?.invalid && personalDataForm.get('customer_primary_email')?.touched">
+      <p class="error">Customer primary email is required and must be a valid email address.</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="customer_primary_phone">Customer Primary Phone</label>
+    <input type="text" id="customer_primary_phone" formControlName="customer_primary_phone" required>
+    <div *ngIf="personalDataForm.get('customer_primary_phone')?.invalid && personalDataForm.get('customer_primary_phone')?.touched">
+      <p class="error">Customer primary phone is required.</p>
+    </div>
+  </div>
+  <button type="submit" [disabled]="personalDataForm.invalid">Update</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
