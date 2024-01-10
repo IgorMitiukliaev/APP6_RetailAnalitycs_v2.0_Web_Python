@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment'
   providedIn: 'root'
 })
 export class PersonalDataService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/personaldata/`;
+  private apiUrl: string = `${environment.apiUrl}/data/api/personaldata`;
   constructor(private http: HttpClient) { }
 
   // A method that returns an observable of User array
@@ -23,7 +23,6 @@ export class PersonalDataService {
   }
     // A method that returns an observable of PersonalData by id
   getPersonalDataById(id: number): Observable<PersonalData> {
-    const headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
     return this.http.get<PersonalData>(`${this.apiUrl}/${id}`).pipe(
       map((item: any) => new PersonalData(item.customer_id, item.customer_name, item.customer_surname, item.customer_primary_email, item.customer_primary_phone))
     );
@@ -31,15 +30,13 @@ export class PersonalDataService {
 
   // A method that updates PersonalData
   updatePersonalData(personalData: PersonalData): Observable<PersonalData> {
-    const headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
-    return this.http.put<PersonalData>(`${this.apiUrl}/${personalData.customer_id}`, personalData, {headers}).pipe(
+    return this.http.put<PersonalData>(`${this.apiUrl}/${personalData.customer_id}/`, personalData).pipe(
       map((item: any) => new PersonalData(item.customer_id, item.customer_name, item.customer_surname, item.customer_primary_email, item.customer_primary_phone))
     );
   }
 
   // A method that deletes PersonalData by id
   deletePersonalData(id: number): Observable<{}> {
-    const headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
-    return this.http.delete(`${this.apiUrl}/${id}`, {headers});
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

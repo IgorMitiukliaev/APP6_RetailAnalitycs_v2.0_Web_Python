@@ -14,7 +14,7 @@ class PersonalDataViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         pk = self.kwargs.get('pk')
         if not pk:
-            return PersonalData.objects.all()[:3]
+            return PersonalData.objects.all()
         return PersonalData.objects.filter(pk=pk)
 
 
