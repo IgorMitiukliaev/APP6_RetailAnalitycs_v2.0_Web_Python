@@ -40,8 +40,9 @@ export class PersonalDataListComponent implements OnInit {
   edit(item: PersonalData): void {
     // Open the edit dialog component and pass the item data as an argument
     const dialogRef = this.dialog.open(PersonalDataFormComponent, {
-      data: item
-    });
+      data: {personalData: item,
+      isEditOnly: true
+    }});
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
