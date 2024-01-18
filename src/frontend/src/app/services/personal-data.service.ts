@@ -42,6 +42,6 @@ export class PersonalDataService {
 
   // A method that creates PersonalData with provided data
   createPersonalData(personalData: PersonalData): Observable<{}> {
-    return this.http.put(`${this.apiUrl}/`, personalData);
+    return this.http.post(`${this.apiUrl}/`, personalData);
   }
 }
