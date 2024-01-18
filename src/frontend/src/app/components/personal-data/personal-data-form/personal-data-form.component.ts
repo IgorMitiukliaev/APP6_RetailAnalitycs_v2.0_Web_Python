@@ -38,10 +38,10 @@ export class PersonalDataFormComponent implements OnInit {
     this.isEditOnly = data.isEditOnly
     this.personalDataForm = new FormGroup({
       customer_id: new FormControl(this.data.personalData.customer_id, !this.isEditOnly ? Validators.required : null),
-      customer_name: new FormControl(this.data.personalData.customer_name, Validators.required),
-      customer_surname: new FormControl(this.data.personalData.customer_surname, Validators.required),
-      customer_primary_email: new FormControl(this.data.personalData.customer_primary_email, [Validators.required]),
-      customer_primary_phone: new FormControl(this.data.personalData.customer_primary_phone, Validators.required)
+      customer_name: new FormControl(this.data.personalData.customer_name, [Validators.required, Validators.maxLength(255)]),
+      customer_surname: new FormControl(this.data.personalData.customer_surname, [Validators.required, Validators.maxLength(255)]),
+      customer_primary_email: new FormControl(this.data.personalData.customer_primary_email, [Validators.maxLength(255)]),
+      customer_primary_phone: new FormControl(this.data.personalData.customer_primary_phone, [Validators.maxLength(15)])
     });
   }
 
