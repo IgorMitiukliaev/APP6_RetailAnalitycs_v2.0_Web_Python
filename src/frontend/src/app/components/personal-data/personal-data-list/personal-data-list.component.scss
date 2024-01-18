@@ -1,6 +1,10 @@
+@use '../../../misc/info21-theme.scss' as info21-theme;
+
 .data-table {
+    @extend .mat-elevation-z8;
     width: 100%;
     max-height: 500px;
+    border-bottom: 1px solid grey;
 }
   
 .mat-column-demo-position {
@@ -12,6 +16,21 @@
 
 [class*=" mat-column-"]  {
     border-right: 1px solid grey;
+    border-left: 1px solid grey;
     align-self: stretch;
     text-align: center
+}
+
+.table-toolbar-button {
+    float: right !important;
+    min-width: 200px;
+}
+
+.table-toolbar {
+    @extend .mat-elevation-z8;
+    justify-content: flex-end;
+    margin-left: auto;
+    background-color: grey;
+    display: flex;
+    padding: 0.5rem;
 }

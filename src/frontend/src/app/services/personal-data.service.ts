@@ -39,4 +39,9 @@ export class PersonalDataService {
   deletePersonalData(id: number): Observable<{}> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  // A method that creates PersonalData with provided data
+  createPersonalData(personalData: PersonalData): Observable<{}> {
+    return this.http.put(`${this.apiUrl}/`, personalData);
+  }
 }

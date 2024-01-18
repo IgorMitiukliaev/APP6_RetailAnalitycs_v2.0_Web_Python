@@ -16,6 +16,11 @@ export class RetailApiServiceService {
   getPersonalData(): Observable<PersonalData[]> {
     return this.pDataService.getPersonalData();
   }
+
+  createPersonalData(personalData: PersonalData): Observable<{}> {
+    return this.pDataService.createPersonalData(personalData);
+  }
+
   getPersonalDataById(id: number): Observable<PersonalData> {
     return this.pDataService.getPersonalDataById(id);
   }

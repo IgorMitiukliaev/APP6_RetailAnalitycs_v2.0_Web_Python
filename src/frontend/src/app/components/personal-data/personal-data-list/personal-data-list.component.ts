@@ -6,15 +6,16 @@ import { MatTableModule } from '@angular/material/table';
 import { RetailApiServiceService } from '@services/retail-api-service.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PersonalDataFormComponent } from '@components/personal-data/personal-data-form/personal-data-form.component';
 import { ErrorDialogComponent } from '@components/error-dialog/error-dialog.component';
 import { error } from 'console';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-personal-data-list',
   templateUrl: './personal-data-list.component.html',
-  imports: [CommonModule, MatTableModule, MatButtonModule, MatDividerModule],
+  imports: [CommonModule, MatTableModule, MatButtonModule, MatDividerModule, MatDialogModule, MatToolbarModule],
   standalone: true,
   styleUrls: ['./personal-data-list.component.scss']
 })
@@ -33,7 +34,26 @@ export class PersonalDataListComponent implements OnInit {
       this.personalDataList = data;
     },
     error => {
-      this.dialog.open(ErrorDialogComponent, error);
+      this.dialog.open(ErrorDialogComponent, {data: error});
+    });
+  }
+  newItem(): void {
+    const dialogRef = this.dialog.open(PersonalDataFormComponent, {
+      data: {personalData: {},
+      isEditOnly: false
+    }});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // If the result is not null, create the item data with the result
+        this.retailApiServiceService.createPersonalData(result).subscribe({
+          next: () => {
+            this.getData();
+          },
+          error: error => {
+            this.dialog.open(ErrorDialogComponent, {data: error});
+          }
+        });
+      }
     });
   }
 
@@ -52,7 +72,7 @@ export class PersonalDataListComponent implements OnInit {
             this.getData();
           },
           error: error => {
-            this.dialog.open(ErrorDialogComponent, error);
+            this.dialog.open(ErrorDialogComponent, {data: error});
           }
         });
       }
@@ -64,7 +84,7 @@ export class PersonalDataListComponent implements OnInit {
         this.getData();
       },
       error: error => {
-        this.dialog.open(ErrorDialogComponent, error);
+        this.dialog.open(ErrorDialogComponent, {data: error});
       }
   })
   }
