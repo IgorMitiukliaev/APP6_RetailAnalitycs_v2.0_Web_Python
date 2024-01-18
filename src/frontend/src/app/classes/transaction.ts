@@ -16,5 +16,3 @@ export class Transaction {
         this.transaction_store = transaction_store;
     }
   }
-
-  

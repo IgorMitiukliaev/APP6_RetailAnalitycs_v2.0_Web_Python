@@ -13,5 +13,3 @@ export class Store {
         this.sku_retail_price = sku_retail_price
     }
   }
-
-  
