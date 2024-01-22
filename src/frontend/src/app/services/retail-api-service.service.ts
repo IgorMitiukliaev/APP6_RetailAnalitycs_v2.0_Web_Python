@@ -1,7 +1,7 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { PersonalDataService } from './personal-data.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { PersonalData } from '../classes/personal-data';
 import { Card } from '@app/classes/card';
 import { CardsService } from './cards.service';
@@ -15,15 +15,19 @@ import { Store } from '@app/classes/store';
 import { StoreService } from './stores-service';
 import { Transaction } from '@app/classes/transaction';
 import { TransactionService } from './transactions.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '@app/components/error-dialog/error-dialog.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RetailApiServiceService {
-  
+  personalData: BehaviorSubject<Map<number ,PersonalData>> = new BehaviorSubject<Map<number ,PersonalData>>(new Map<number ,PersonalData>())
+  cards: BehaviorSubject<Map<number ,Card>> = new BehaviorSubject<Map<number ,Card>>(new Map<number ,Card>())
 
   constructor(
     private http: HttpClient,
+    private dialog: MatDialog,
     private pDataService: PersonalDataService,
     private cardsService: CardsService,
     private checksService: ChecksService,
@@ -34,8 +38,20 @@ export class RetailApiServiceService {
   //
   // PERSONAL DATA
   //
-  getPersonalData(): Observable<PersonalData[]> {
-    return this.pDataService.getPersonalData();
+  fetchPersonalData(): void {
+    this.pDataService.getPersonalData().subscribe({
+      next: data => {
+        const dict = new Map<number ,PersonalData>()
+
+        data.forEach( (element) => {
+          dict.set(element.customer_id, element)
+      });
+        this.personalData.next(dict) 
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
   }
 
   createPersonalData(personalData: PersonalData): Observable<{}> {
@@ -59,8 +75,16 @@ export class RetailApiServiceService {
   // CARDS
   //
   // A method that retrieves cards data
-  getCards(): Observable<Card[]> {
-    return this.cardsService.getCards();
+  getCards(): Card[] {
+    this.cardsService.getCards().subscribe({
+      next: data => {
+        this.cards = data 
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+    return this.cards;
   }
 
   // A method that creates new entry with given data
