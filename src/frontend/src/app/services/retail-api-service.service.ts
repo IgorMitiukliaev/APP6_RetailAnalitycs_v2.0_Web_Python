@@ -22,8 +22,8 @@ import { ErrorDialogComponent } from '@app/components/error-dialog/error-dialog.
   providedIn: 'root'
 })
 export class RetailApiServiceService {
-  personalData: BehaviorSubject<Map<number ,PersonalData>> = new BehaviorSubject<Map<number ,PersonalData>>(new Map<number ,PersonalData>())
-  cards: BehaviorSubject<Map<number ,Card>> = new BehaviorSubject<Map<number ,Card>>(new Map<number ,Card>())
+  personalData: BehaviorSubject<Map<number, PersonalData>> = new BehaviorSubject<Map<number, PersonalData>>(new Map<number, PersonalData>())
+  cards: BehaviorSubject<Map<number, Card>> = new BehaviorSubject<Map<number, Card>>(new Map<number, Card>())
 
   constructor(
     private http: HttpClient,
@@ -41,17 +41,20 @@ export class RetailApiServiceService {
   fetchPersonalData(): void {
     this.pDataService.getPersonalData().subscribe({
       next: data => {
-        const dict = new Map<number ,PersonalData>()
-
+        const dict = new Map<number, PersonalData>()
         data.forEach( (element) => {
           dict.set(element.customer_id, element)
-      });
-        this.personalData.next(dict) 
+        });
+        this.personalData.next(dict);
       },
       error: error => {
         this.dialog.open(ErrorDialogComponent, {data: error});
       }
     })
+  }
+
+  getPersonalData() : Observable<Map<number, PersonalData>> {
+    return this.personalData.asObservable();
   }
 
   createPersonalData(personalData: PersonalData): Observable<{}> {
@@ -75,16 +78,23 @@ export class RetailApiServiceService {
   // CARDS
   //
   // A method that retrieves cards data
-  getCards(): Card[] {
+  fetchCards(): void {
     this.cardsService.getCards().subscribe({
-      next: data => {
-        this.cards = data 
-      },
-      error: error => {
-        this.dialog.open(ErrorDialogComponent, {data: error});
-      }
-    })
-    return this.cards;
+    next: data => {
+      const dict = new Map<number, Card>()
+      data.forEach((element) => {
+        dict.set(element.customer_card_id, element)
+    });
+      this.cards.next(dict) 
+    },
+    error: error => {
+      this.dialog.open(ErrorDialogComponent, {data: error});
+    }
+  })
+  }
+
+  getCards() : Observable<Map<number, Card>> {
+    return this.cards.asObservable();
   }
 
   // A method that creates new entry with given data
