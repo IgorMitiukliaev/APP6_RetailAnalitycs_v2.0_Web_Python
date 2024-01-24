@@ -1,0 +1,108 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+$palette-school21-primary: (
+    50 : #e9fdf3,
+    100 : #c7f9e0,
+    200 : #a2f5cc,
+    300 : #7cf1b8,
+    400 : #60eea8,
+    500 : #44eb99,
+    600 : #3ee991,
+    700 : #35e586,
+    800 : #2de27c,
+    900 : #2eb372,
+    A100 : #ffffff,
+    A200 : #e0ffec,
+    A400 : #adffcb,
+    A700 : #94ffbb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$school21accent: (
+    50 : #f0e4fc,
+    100 : #dbbbf7,
+    200 : #c38df1,
+    300 : #aa5feb,
+    400 : #983de7,
+    500 : #861be3,
+    600 : #7e18e0,
+    700 : #7314dc,
+    800 : #6910d8,
+    900 : #5608d0,
+    A100 : #fcfaff,
+    A200 : #dac7ff,
+    A400 : #b894ff,
+    A700 : #a77aff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$dark-focused: rgba(black, 0.12);
+$dark-dividers: rgba(black, 0.12);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-secondary-text: rgba(black, 0.54);
+
+$light-theme-background-palette: (
+  status-bar: map.get(mat.$grey-palette, 500),
+  app-bar:    map.get(mat.$grey-palette, 600),
+  background: map.get(mat.$grey-palette, 500),
+  hover:      rgba(black, 0.04), // TODO(kara): check style with Material Design UX
+  card:       white,
+  dialog:     white,
+  disabled-button: rgba(black, 0.12),
+  raised-button: white,
+  focused-button: $dark-focused,
+  selected-button: map.get(mat.$grey-palette, 300),
+  selected-disabled-button: map.get(mat.$grey-palette, 400),
+  disabled-button-toggle: map.get(mat.$grey-palette, 200),
+  unselected-chip: map.get(mat.$grey-palette, 300),
+  disabled-list-option: map.get(mat.$grey-palette, 200),
+  tooltip: map.get(mat.$grey-palette, 700),
+);
+
+// Foreground palette for light themes.
+$light-theme-foreground-palette: (
+  base:              black,
+  divider:           $dark-dividers,
+  dividers:          $dark-dividers,
+  disabled:          $dark-disabled-text,
+  disabled-button:   rgba(black, 0.26),
+  disabled-text:     $dark-disabled-text,
+  elevation:         black,
+  hint-text:         $dark-disabled-text,
+  secondary-text:    $dark-secondary-text,
+  icon:              rgba(black, 0.54),
+  icons:             rgba(black, 0.54),
+  text:              rgba(black, 0.87),
+  slider-min:        rgba(black, 0.87),
+  slider-off:        rgba(black, 0.26),
+  slider-off-active: rgba(black, 0.38),
+);

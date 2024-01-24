@@ -31,6 +31,9 @@ SECRET_KEY = 'django-insecure-oospp@0bl1%0@c%*0n+5zr(t4!8vhut64exb&%v!d#a7=a1roh
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',
+]
 CRSF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
@@ -45,10 +48,12 @@ INSTALLED_APPS = [
     'data.apps.DataConfig',
     'offer.apps.OfferConfig',
     'rest_framework',
+    "corsheaders",
     'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

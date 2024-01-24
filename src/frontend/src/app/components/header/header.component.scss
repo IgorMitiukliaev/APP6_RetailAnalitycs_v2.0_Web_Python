@@ -1,0 +1,22 @@
+/* Change the color of the active link underline */
+@use '@angular/material' as mat;
+
+.mat-tab-link {
+    &.mat-tab-label-active {
+      border-bottom-color: red !important;
+    }
+  
+    /* Change the color of the tab link text */
+    color: blue;
+  
+    /* Change the color of the active tab link text */
+    &.mat-tab-label-active {
+      color: green;
+    }
+}
+
+.header {
+    box-shadow: -2px 4px 2px -2px mat.get-color-from-palette(mat.$grey-palette, 700);;
+    height: auto;
+    caret-color: transparent;
+}
