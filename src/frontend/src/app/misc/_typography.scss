@@ -1,0 +1,16 @@
+
+@use '@angular/material' as mat;
+
+$level-school21: mat.define-typography-level(
+  $font-family: "SB Sans Text",
+  $font-weight: normal,
+  $font-size: 14px,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+$typography-school21: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: 'SB Sans Text',
+  $button: $level-school21,
+);

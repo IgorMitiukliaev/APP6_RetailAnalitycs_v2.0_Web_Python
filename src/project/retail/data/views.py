@@ -10,14 +10,14 @@ from .permissions import IsAdminOrReadOnly
 class PersonalDataViewSet(viewsets.ModelViewSet):
     queryset = PersonalData.objects.all()
     serializer_class = PersonalDataSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
     # https://youtu.be/Ur24Ms-MD5k?si=pEnb5mv1g_YcBnvV&t=714
-    # def get_queryset(self):
-    #     pk = self.kwargs.get('pk')
-    #     if not pk:
-    #         return PersonalData.objects.all()[:3]
-    #     return PersonalData.objects.filter(pk=pk)
-    permission_classes = (IsAdminOrReadOnly, )
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        if not pk:
+            return PersonalData.objects.all()
+        return PersonalData.objects.filter(pk=pk)
 
 
 class CardsViewSet(viewsets.ModelViewSet):
