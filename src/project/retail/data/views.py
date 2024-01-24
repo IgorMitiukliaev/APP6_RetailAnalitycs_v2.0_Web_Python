@@ -4,11 +4,13 @@ from rest_framework import generics, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import *
+from .permissions import IsAdminOrReadOnly
 
 
 class PersonalDataViewSet(viewsets.ModelViewSet):
-    # queryset = PersonalData.objects.all()
+    queryset = PersonalData.objects.all()
     serializer_class = PersonalDataSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
     # https://youtu.be/Ur24Ms-MD5k?si=pEnb5mv1g_YcBnvV&t=714
     def get_queryset(self):
@@ -21,32 +23,37 @@ class PersonalDataViewSet(viewsets.ModelViewSet):
 class CardsViewSet(viewsets.ModelViewSet):
     queryset = Cards.objects.all()
     serializer_class = CardsSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 class ChecksViewSet(viewsets.ModelViewSet):
     queryset = Checks.objects.all()
     serializer_class = ChecksSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 class GroupsSkuViewSet(viewsets.ModelViewSet):
     queryset = GroupsSku.objects.all()
     serializer_class = GroupsSkuSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 class SKUViewSet(viewsets.ModelViewSet):
     queryset = Sku.objects.all()
     serializer_class = SKUSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 class StoresViewSet(viewsets.ModelViewSet):
     queryset = Stores.objects.all()
     serializer_class = StoresSerializer
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 class TransactionsViewSet(viewsets.ModelViewSet):
     queryset = Transactions.objects.all()
     serializer_class = TransactionsSerializer
-
+    permission_classes = (IsAdminOrReadOnly, )
 
 # class PersonalDataAPIList(generics.ListAPIView):
 #     queryset = PersonalData.objects.all()

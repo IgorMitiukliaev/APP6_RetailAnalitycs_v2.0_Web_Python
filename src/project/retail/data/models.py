@@ -65,7 +65,8 @@ class Sku(models.Model):
 
 
 class Stores(models.Model):
-    transaction_store_id = models.AutoField(primary_key=True)
+    store_rec_id = models.AutoField(primary_key=True)
+    transaction_store_id = models.BigIntegerField()
     sku = models.ForeignKey(Sku, models.CASCADE)
     sku_purchase_price = models.DecimalField(
         max_digits=12, decimal_places=3, blank=True, null=True)
