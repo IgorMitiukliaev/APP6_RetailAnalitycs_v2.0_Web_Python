@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card } from '@classes/card';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardsService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/cards`;
+  private apiUrl: string = `${environment.apiUrl}/data/cards`;
   constructor(private http: HttpClient) { }
 
   // A method that returns an observable of Card array

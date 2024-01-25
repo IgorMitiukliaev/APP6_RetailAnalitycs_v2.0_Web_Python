@@ -1,0 +1,27 @@
+<mat-card class="dialog">
+    <mat-toolbar class="mat-primary">
+      <h2 class="mat-h2">Sign Up</h2>
+    </mat-toolbar>
+    <mat-dialog-content class="dialog-content">
+      <form [formGroup]="authForm" (ngSubmit)="login()">
+        <mat-form-field class="full-width">
+            <mat-label>Login</mat-label>
+            <input matInput class="full-width" type="text" id="login" formControlName="login">
+            @if (authForm.get('login')?.hasError('login')) {
+                <mat-error>Login is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" id="password" formControlName="password" required>
+            @if (authForm.get('password')?.hasError('required')) {
+              <mat-error>Password is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+          <button mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">Submit</button>
+          <button mat-raised-button color="accent" type="button" (click)="cancel()">Close</button>
+        </mat-dialog-actions>
+      </form>
+    </mat-dialog-content>
+</mat-card>

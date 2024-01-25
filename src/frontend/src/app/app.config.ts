@@ -3,14 +3,22 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './services/auth-interceptor.service';
+import { CookieModule } from 'ngx-cookie';
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(), 
     provideHttpClient(withFetch()),
-    provideAnimations()
+    provideAnimations(),
+    provideHttpClient(
+      withInterceptorsFromDi(),
+    ),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ]
 };

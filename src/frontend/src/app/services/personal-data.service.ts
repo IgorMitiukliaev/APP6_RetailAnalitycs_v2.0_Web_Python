@@ -4,17 +4,18 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PersonalData } from '../classes/personal-data';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalDataService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/personaldata`;
-  constructor(private http: HttpClient) { }
+  private apiUrl: string = `${environment.apiUrl}/data/personaldata`;
+  constructor(private http: HttpClient) {
+  }
 
   // A method that returns an observable of User array
   getPersonalData(): Observable<PersonalData[]> {
-    const headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*');
     // Send a GET request to the API and get the response as JSON
     return this.http.get<PersonalData[]>(this.apiUrl).pipe(
       // Use the map operator to transform the JSON data into User instances
