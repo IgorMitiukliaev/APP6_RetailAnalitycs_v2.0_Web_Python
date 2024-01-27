@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor
     request = this.injectTokenIntoRequest(request)
     return next.handle(request).pipe(
       catchError((error) => {
-        console.log("intercept catchError")
         if (
           error instanceof HttpErrorResponse &&
           error.status === 401
@@ -27,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor
   }
 
   private injectTokenIntoRequest(request: HttpRequest<any>): HttpRequest<any> {
-    let token = this.authService.getAccessToken();
+    let token = this.authService.getAccessToken;
     if (token) {
       request = request.clone({
         setHeaders: {
@@ -39,17 +38,13 @@ export class AuthInterceptor implements HttpInterceptor
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (this.authService.isAuthenticated()) {
-      console.log("this.authService.isAuthenticated()")
+    if (this.authService.isAuthenticated) {
       return this.authService.refreshToken().pipe(
         switchMap(() => {
-          console.log("return next.handle(request);")
           request = this.injectTokenIntoRequest(request)
           return next.handle(request);
         }),
         catchError((error) => {
-          console.log("catchError((error) => {)")
-
           if (error.status == '403') {
             this.authService.logout();
           }

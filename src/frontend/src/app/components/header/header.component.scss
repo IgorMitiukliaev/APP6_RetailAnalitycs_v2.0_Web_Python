@@ -17,6 +17,20 @@
 
 .header {
     box-shadow: -2px 4px 2px -2px mat.get-color-from-palette(mat.$grey-palette, 700);;
-    height: auto;
+    height: 50px;
     caret-color: transparent;
+    display: flex;
+    align-content: stretch;
+}
+
+.right-tab-group {
+  margin-left: auto; 
+  display: flex;
+  padding: 0rem;
+  height: 100%;
+}
+
+.right-tab-button {
+  height: 100%;
+  border-radius: 0;
 }
