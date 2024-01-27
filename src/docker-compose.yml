@@ -23,6 +23,19 @@ services:
       retries: 5
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    networks:
+      - retail_network
+    container_name: retail_frontend
+    image: retail_frontend
+    restart: unless-stopped
+    depends_on: 
+      db:
+        condition: service_healthy
+
 volumes:
   pg_ret:
 

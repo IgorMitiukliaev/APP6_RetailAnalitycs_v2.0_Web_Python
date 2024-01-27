@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # install project dependencies
-RUN npm install -g @angular/cli && npm install
+RUN npm install -g @angular/cli && npm install ngx-cookie --save && npm install
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
