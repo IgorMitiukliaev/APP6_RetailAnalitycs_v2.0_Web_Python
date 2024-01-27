@@ -4,6 +4,7 @@ import { OffersComponent } from '@pages/offers/offers.component';
 import { IndexComponent } from '@pages/index/index.component';
 import { DefaultLayoutComponent } from '@layouts/default/default.component';
 import { AuthGuard } from './services/auth.guard';
+import { AboutComponent } from './pages/about/about.component';
 export const routes: Routes = [
     {
         path: '',
@@ -21,6 +22,10 @@ export const routes: Routes = [
             {
                 path: 'offers',
                 component: OffersComponent
+            },
+            {
+                path: 'about',
+                component: AboutComponent
             },
         ]
     },

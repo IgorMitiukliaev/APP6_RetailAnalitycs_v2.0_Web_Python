@@ -22,6 +22,31 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: ./Dockerfile
+    container_name: "retail_frontend"
+    image: retail_frontend
+    restart: unless-stopped
+    stop_grace_period: 10s
+    networks:
+      - retail_network
+  nginx:
+    image: "nginx"
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    container_name: nginx
+    networks:
+      - retail_network
+    restart: unless-stopped
+    depends_on: 
+      db:
+        condition: service_started
+      frontend:
+        condition: service_healthy
 
 volumes:
   pg_ret:

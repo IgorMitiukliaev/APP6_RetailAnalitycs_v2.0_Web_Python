@@ -1,8 +1,30 @@
 .footer {
-    position: absolute;
-    bottom: 0;
+    font-size: smaller;
+    position: fixed;
+    bottom: 0px;
+    height: 50px;
     width: 100%;
-    height: 40px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
+    padding: 0%;
+    margin: 0%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
-  
+
+.footer-button {
+    display:block;
+    height: 1em;
+    line-height: 1em;
+    margin: 2px 2px 0% 0%;
+    padding: 0%;
+    max-height: 100%;
+}
+
+.footer-text {
+    display:block;
+    padding: 0%;
+    margin: 0%;
+    height: 1em;
+    line-height: 1em;
+}
