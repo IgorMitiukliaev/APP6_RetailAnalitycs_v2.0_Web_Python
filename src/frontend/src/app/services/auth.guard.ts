@@ -11,10 +11,7 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 export class AuthGuard {
   constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): | Observable<boolean> | boolean {
-    console.log(route)
-    console.log(state)
-    console.log()
-    if (!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated) {
       if (this.router.navigated) {
         const authDialogRef = this.dialog.open(AuthComponent);
         const event: Observable<any> = authDialogRef.afterClosed() 

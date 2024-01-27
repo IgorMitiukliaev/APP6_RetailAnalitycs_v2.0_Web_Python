@@ -5,19 +5,31 @@
     </a>
     <mat-divider [vertical]="true"></mat-divider>
     <nav mat-tab-nav-bar  [tabPanel]="tabPanel">
-    <mat-divider [vertical]="true" style="margin-left: 15px;"></mat-divider>
-    <a mat-tab-link
-        [routerLink]="['/data']"
-        routerLinkActive #rla1="routerLinkActive"
-        [active]="rla1.isActive">
-            Data
-    </a>
-    <a mat-tab-link
-        [routerLink]="['/offers']"
-        routerLinkActive #rla2="routerLinkActive"
-        [active]="rla2.isActive">
-            Offers
-    </a>
-  </nav>
-  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+        <mat-divider [vertical]="true" style="margin-left: 15px;"></mat-divider>
+        <a mat-tab-link
+            [routerLink]="['/data']"
+            routerLinkActive #rla1="routerLinkActive"
+            [active]="rla1.isActive">
+                Data
+        </a>
+        <a mat-tab-link
+            [routerLink]="['/offers']"
+            routerLinkActive #rla2="routerLinkActive"
+            [active]="rla2.isActive">
+                Offers
+        </a>
+    
+    </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+    <div class="right-tab-group">
+        <mat-divider [vertical]="true"></mat-divider>
+        @if (!isLoggedIn) {
+            <button mat-button class="right-tab-button" color="primary" (click)="openSignInDialog()">Sign In</button>
+        } @else {
+            <button mat-button class="right-tab-button" color="primary" [matMenuTriggerFor]="menu">{{currentUserName}}</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logout()">Log Out</button>
+            </mat-menu>
+        }
+    </div>
 </mat-toolbar>

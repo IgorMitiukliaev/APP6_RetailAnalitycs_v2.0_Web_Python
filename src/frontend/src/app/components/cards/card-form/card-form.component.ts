@@ -53,7 +53,6 @@ export class CardFormComponent implements OnInit {
 
   // Close the dialog and emit the updated data
   save(): void {
-    console.log(this.cardForm.value)
     this.dialogRef.close(this.cardForm.value);
   }
 
