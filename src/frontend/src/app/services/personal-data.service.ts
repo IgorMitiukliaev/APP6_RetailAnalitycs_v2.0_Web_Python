@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PersonalData } from '../classes/personal-data';
 import { environment } from '../../environments/environment'
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalDataService {
   private apiUrl: string = `${environment.apiUrl}/data/personaldata`;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   // A method that returns an observable of User array
@@ -44,5 +44,17 @@ export class PersonalDataService {
   // A method that creates PersonalData with provided data
   createPersonalData(personalData: PersonalData): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, personalData);
+  }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_personaldata");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_personaldata");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_personaldata");
   }
 }

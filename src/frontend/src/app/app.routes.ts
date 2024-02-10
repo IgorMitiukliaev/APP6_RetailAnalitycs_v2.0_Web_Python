@@ -3,7 +3,7 @@ import { DataComponent } from '@pages/data/data.component';
 import { OffersComponent } from '@pages/offers/offers.component';
 import { IndexComponent } from '@pages/index/index.component';
 import { DefaultLayoutComponent } from '@layouts/default/default.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './services/auth/auth.guard';
 import { AboutComponent } from './pages/about/about.component';
 export const routes: Routes = [
     {

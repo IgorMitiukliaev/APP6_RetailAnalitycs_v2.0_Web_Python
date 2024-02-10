@@ -20,14 +20,29 @@ import { Card } from '@app/classes/card';
   styleUrls: ['./cards-list.component.scss']
 })
 export class CardsListComponent implements OnInit {
-  displayedColumns: string[] = ['customer_card_id', 'customer', 'actions'];
+  displayedColumns: string[] = ['customer_card_id', 'customer'];
   cardsList: Card[] = [];
   personalDataList: Map<number, PersonalData> = new Map<number, PersonalData>();
 
   constructor(private retailApiServiceService: RetailApiServiceService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(this.userCanChange() || this.userCanDelete()) {
+      this.displayedColumns.push('actions');
+    }
     this.getData();
+  }
+
+  userCanChange(): boolean {
+    return this.retailApiServiceService.canChangeCard();
+  }
+
+  userCanDelete(): boolean {
+    return this.retailApiServiceService.canDeleteCard();
+  }
+
+  userCanAdd(): boolean {
+    return this.retailApiServiceService.canAddCard();
   }
 
   getData(): void {

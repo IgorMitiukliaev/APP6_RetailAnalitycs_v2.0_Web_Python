@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import {MatDividerModule} from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from '@app/services/auth.service';
+import { AuthService } from '@app/services/auth/auth.service';
 import {MatMenuModule} from '@angular/material/menu';
 import { AuthComponent } from '../auth/auth.component';
 import { Observable } from 'rxjs';

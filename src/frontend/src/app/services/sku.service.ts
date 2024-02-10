@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sku } from '@app/classes/sku';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkuService {
   private apiUrl: string = `${environment.apiUrl}/data/api/sku`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Sku array
   getSkus(): Observable<Sku[]> {
@@ -43,5 +44,16 @@ export class SkuService {
   // A method that creates Sku with provided data
   createSku(sku: Sku): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, sku);
+  }
+  canChange(): boolean {
+    return this.authService.can("data.change_sku");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_sku");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_sku");
   }
 }

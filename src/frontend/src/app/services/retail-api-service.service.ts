@@ -74,6 +74,18 @@ export class RetailApiServiceService {
   deletePersonalData(id: number): Observable<{}> {
     return this.pDataService.deletePersonalData(id);
   }
+
+  canChangePersonalData(): boolean {
+    return this.pDataService.canChange();
+  }
+
+  canAddPersonalData(): boolean {
+    return this.pDataService.canAdd();
+  }
+
+  canDeletePersonalData(): boolean {
+    return this.pDataService.canDelete();
+  }
   //
   // CARDS
   //
@@ -116,6 +128,17 @@ export class RetailApiServiceService {
   deleteCard(id: number): Observable<{}> {
     return this.cardsService.deleteCard(id);
   }
+  canChangeCard(): boolean {
+    return this.cardsService.canChange();
+  }
+
+  canAddCard(): boolean {
+    return this.cardsService.canAdd();
+  }
+
+  canDeleteCard(): boolean {
+    return this.cardsService.canDelete();
+  }
   //
   // CHECKS
   //
@@ -142,6 +165,18 @@ export class RetailApiServiceService {
   // A method that deletes Check by id
   deleteCheck(id: number): Observable<{}> {
     return this.checksService.deleteCheck(id);
+  }
+  
+  canChangeCheck(): boolean {
+    return this.checksService.canChange();
+  }
+
+  canAddChecks(): boolean {
+    return this.checksService.canAdd();
+  }
+
+  canDeleteChecks(): boolean {
+    return this.checksService.canDelete();
   }
   //
   // SKU GROUP
@@ -170,6 +205,18 @@ export class RetailApiServiceService {
   deleteSkuGroup(id: number): Observable<{}> {
     return this.skuGroupService.deleteSkuGroup(id);
   }
+
+  canChangeSkuGroup(): boolean {
+    return this.skuGroupService.canChange();
+  }
+
+  canAddSkuGroup(): boolean {
+    return this.skuGroupService.canAdd();
+  }
+
+  canDeleteSkuGroup(): boolean {
+    return this.skuGroupService.canDelete();
+  }
   //
   // SKU GROUP
   //
@@ -196,6 +243,18 @@ export class RetailApiServiceService {
   // A method that deletes Sku by id
   deleteSku(id: number): Observable<{}> {
     return this.skuService.deleteSku(id);
+  }
+
+  canChangeSku(): boolean {
+    return this.skuService.canChange();
+  }
+
+  canAddSku(): boolean {
+    return this.skuService.canAdd();
+  }
+
+  canDeleteSku(): boolean {
+    return this.skuService.canDelete();
   }
   //
   // STORES
@@ -224,6 +283,18 @@ export class RetailApiServiceService {
   deleteStore(id: number): Observable<{}> {
     return this.storeService.deleteStore(id);
   }
+
+  canChangeStore(): boolean {
+    return this.storeService.canChange();
+  }
+
+  canAddStore(): boolean {
+    return this.storeService.canAdd();
+  }
+
+  canDeleteStore(): boolean {
+    return this.storeService.canDelete();
+  }
   //
   // TRANSACTIONS
   //
@@ -250,6 +321,18 @@ export class RetailApiServiceService {
   // A method that deletes Transaction by id
   deleteTransaction(id: number): Observable<{}> {
     return this.transactionService.deleteTransaction(id);
+  }
+  
+  canChangeTransaction(): boolean {
+    return this.transactionService.canChange();
+  }
+
+  canAddTransaction(): boolean {
+    return this.transactionService.canAdd();
+  }
+
+  canDeleteTransaction(): boolean {
+    return this.transactionService.canDelete();
   }
 }
 

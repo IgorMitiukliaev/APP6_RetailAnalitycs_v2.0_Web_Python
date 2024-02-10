@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SkuGroup } from '@app/classes/sku-group';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SkuGroupsService {
   private apiUrl: string = `${environment.apiUrl}/data/api/groupssku`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of SkuGroup array
   getSkuGroups(): Observable<SkuGroup[]> {
@@ -43,5 +44,17 @@ export class SkuGroupsService {
   // A method that creates SkuGroup with provided data
   createSkuGroup(skuGroup: SkuGroup): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, skuGroup);
+  }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_groupssku");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_groupssku");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_groupssku");
   }
 }

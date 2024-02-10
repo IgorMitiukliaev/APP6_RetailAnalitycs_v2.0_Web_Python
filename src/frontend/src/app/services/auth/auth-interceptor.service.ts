@@ -45,7 +45,7 @@ export class AuthInterceptor implements HttpInterceptor
           return next.handle(request);
         }),
         catchError((error) => {
-          if (error.status == '403') {
+          if (error.status == '403' || error.status == '401') {
             this.authService.logout();
           }
 

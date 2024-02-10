@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogActions, MatDialogContent} from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from '@app/services/auth.service';
+import { AuthService } from '@app/services/auth/auth.service';
 import { MatInputModule } from '@angular/material/input';
 import { CookieService } from 'ngx-cookie';
 

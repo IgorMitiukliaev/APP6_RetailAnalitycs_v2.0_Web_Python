@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store } from '@app/classes/store';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
   private apiUrl: string = `${environment.apiUrl}/data/api/stores`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Store array
   getStores(): Observable<Store[]> {
@@ -43,5 +44,17 @@ export class StoreService {
   // A method that creates Store with provided data
   createStore(store: Store): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, store);
+  }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_stores");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_stores");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_stores");
   }
 }

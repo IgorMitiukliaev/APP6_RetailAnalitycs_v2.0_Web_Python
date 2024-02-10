@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Transaction } from '@app/classes/transaction';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
   private apiUrl: string = `${environment.apiUrl}/data/api/transactions`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Transaction array
   getTransactions(): Observable<Transaction[]> {
@@ -43,5 +44,17 @@ export class TransactionService {
   // A method that creates Transaction with provided data
   createTransaction(transaction: Transaction): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, transaction);
+  }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_transactions");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_transactions");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_transactions");
   }
 }

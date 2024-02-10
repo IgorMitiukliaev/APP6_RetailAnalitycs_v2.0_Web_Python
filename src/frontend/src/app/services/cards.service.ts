@@ -4,14 +4,26 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Card } from '@classes/card';
 import { environment } from '../../environments/environment'
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardsService {
   private apiUrl: string = `${environment.apiUrl}/data/cards`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_cards");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_cards");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_cards");
+  }
 
   // A method that returns an observable of Card array
   getCards(): Observable<Card[]> {

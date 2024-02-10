@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Check } from '@app/classes/check';
 import { environment } from '../../environments/environment'
+import { AuthService } from './auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChecksService {
   private apiUrl: string = `${environment.apiUrl}/data/api/checks`;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Check array
   getChecks(): Observable<Check[]> {
@@ -43,5 +44,17 @@ export class ChecksService {
   // A method that creates Check with provided data
   createCheck(check: Check): Observable<{}> {
     return this.http.post(`${this.apiUrl}/`, check);
+  }
+
+  canChange(): boolean {
+    return this.authService.can("data.change_checks");
+  }
+
+  canAdd(): boolean {
+    return this.authService.can("data.add_checks");
+  }
+
+  canDelete(): boolean {
+    return this.authService.can("data.delete_checks");
   }
 }

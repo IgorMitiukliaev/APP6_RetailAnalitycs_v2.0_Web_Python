@@ -1,5 +1,7 @@
 <div class="table-toolbar">
-  <button mat-flat-button class="table-toolbar-button" color="primary" (click)="newItem()">New Item</button>
+  @if (userCanAdd()) {
+    <button mat-flat-button class="table-toolbar-button" color="primary" (click)="newItem()">New Item</button>
+  }
 </div>
 <table mat-table [dataSource]="cardsList" class="data-table">
 
@@ -16,8 +18,12 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element" >
+        @if (userCanChange()) {
           <button mat-flat-button (click)="edit(element)">Edit</button>
+        }
+        @if (userCanDelete()) {
           <button mat-flat-button (click)="deleteItem(element)" color="warn" >Delete</button> 
+        }
       </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns">text</tr>

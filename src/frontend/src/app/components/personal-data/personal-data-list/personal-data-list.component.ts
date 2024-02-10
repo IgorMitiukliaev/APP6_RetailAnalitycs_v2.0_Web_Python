@@ -20,14 +20,29 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrls: ['./personal-data-list.component.scss']
 })
 export class PersonalDataListComponent implements OnInit {
-  displayedColumns: string[] = ['customer_id', 'customer_name', 'customer_surname', 'customer_primary_email', 'customer_primary_phone', 'actions'];
+  displayedColumns: string[] = ['customer_id', 'customer_name', 'customer_surname', 'customer_primary_email', 'customer_primary_phone'];
   personalDataList: PersonalData[] = [];
   
 
   constructor(private retailApiServiceService: RetailApiServiceService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if(this.userCanChange() || this.userCanDelete()) {
+      this.displayedColumns.push('actions');
+    }
     this.getData();
+  }
+
+  userCanChange(): boolean {
+    return this.retailApiServiceService.canChangePersonalData();
+  }
+
+  userCanDelete(): boolean {
+    return this.retailApiServiceService.canDeletePersonalData();
+  }
+
+  userCanAdd(): boolean {
+    return this.retailApiServiceService.canAddPersonalData();
   }
 
   getData(): void {

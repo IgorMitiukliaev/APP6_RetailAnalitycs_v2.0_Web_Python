@@ -17,7 +17,10 @@ export class AuthGuard {
         const event: Observable<any> = authDialogRef.afterClosed() 
         event.subscribe({
           next: data => {
-            this.router.navigate([state.url]);
+            if (data)
+              this.router.navigate([state.url]);
+            else
+              this.router.navigate(['/']);
           },
         });
         return event;
