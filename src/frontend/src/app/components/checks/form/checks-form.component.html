@@ -11,26 +11,26 @@
       <mat-form-field class="full-width">
         <mat-label>Transaction</mat-label>
         <mat-select id="transaction" formControlName="transaction" name="transaction" required>
-          @for (t of transactionsList.values(); track t) {
+          @for (t of transactionsList; track t) {
             <mat-option [value]="t.transaction_id">{{t.transaction_store}} : {{t.transaction_datetime}}
             </mat-option>
           }
-          @if (checkForm.get('transaction')?.hasError('required')) {
-            <mat-error>Transaction is <strong>required</strong></mat-error>
-          }
         </mat-select>
+        @if (checkForm.get('transaction')?.hasError('required')) {
+          <mat-error>Transaction is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>SKU</mat-label>
         <mat-select id="sku" formControlName="sku" name="sku" required>
-          @for (sku of skuList.values(); track sku) {
+          @for (sku of skuList; track sku) {
             <mat-option [value]="sku.sku_id">{{sku.sku_name}}
             </mat-option>
           }
-          @if (checkForm.get('customer')?.hasError('required')) {
-            <mat-error>SKU is <strong>required</strong></mat-error>
-          }
         </mat-select>
+        @if (checkForm.get('customer')?.hasError('required')) {
+          <mat-error>SKU is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field class="full-width">

@@ -15,7 +15,6 @@
       <td mat-cell *matCellDef="let element">
         @if (transactionsList.get(element.transaction) == undefined) {
           n/a
-
         }
         @else if (personalDataList.get(transactionsList.get(element.transaction)!.customer_card) == undefined) {
           missing_customer | {{transactionsList.get(element.transaction)?.transaction_datetime}}

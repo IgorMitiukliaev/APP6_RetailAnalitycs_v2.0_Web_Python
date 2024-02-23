@@ -5,11 +5,12 @@ import { CardsListComponent } from '@app/components/cards/cards-list/cards-list.
 import { ChecksListComponent } from '@app/components/checks/list/checks-list.component';
 import { PersonalDataListComponent } from '@app/components/personal-data/personal-data-list/personal-data-list.component';
 import { SkuGroupListComponent } from '@app/components/sku-group/list/sku-group-list.component';
+import { SkuListComponent } from '@app/components/sku/list/sku-list.component';
 
 @Component({
   selector: 'app-data',
   standalone: true,
-  imports: [MatCardModule, MatTabsModule, PersonalDataListComponent, CardsListComponent, ChecksListComponent, SkuGroupListComponent],
+  imports: [MatCardModule, MatTabsModule, PersonalDataListComponent, CardsListComponent, ChecksListComponent, SkuGroupListComponent, SkuListComponent],
   templateUrl: './data.component.html',
   styleUrl: './data.component.scss'
 })

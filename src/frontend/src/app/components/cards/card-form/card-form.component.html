@@ -15,10 +15,10 @@
             <mat-option [value]="pd.customer_id">{{pd.customer_name}} : {{pd.customer_surname}}
             </mat-option>
           }
-          @if (cardForm.get('customer')?.hasError('required')) {
-            <mat-error>Customer is <strong>required</strong></mat-error>
-          }
         </mat-select>
+        @if (cardForm.get('customer')?.hasError('required')) {
+          <mat-error>Customer is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-dialog-actions align="end">
         <button mat-raised-button color="primary" type="submit" [disabled]="cardForm.invalid">Submit</button>
