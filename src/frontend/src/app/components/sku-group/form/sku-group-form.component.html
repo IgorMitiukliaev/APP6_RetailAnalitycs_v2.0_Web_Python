@@ -1,0 +1,28 @@
+<mat-card class="dialog">
+  <mat-toolbar class="mat-primary">
+    <h2 class="mat-h2">Edit SKU Group</h2>
+  </mat-toolbar>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="skuGroupForm" (ngSubmit)="save()">
+      <mat-form-field class="full-width">
+        <mat-label>SkuGroup ID</mat-label>
+        <input matInput class="full-width" type="number" id="group_id" formControlName="group_id"  [readonly]="isEditOnly">
+        @if (skuGroupForm.get('group_id')?.hasError('required')) {
+          <mat-error>ID is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput id="group_name" formControlName="group_name" required>
+        @if (skuGroupForm.get('group_name')?.hasError('required')) {
+          <mat-error>Name is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="skuGroupForm.invalid">Submit</button>
+        <button mat-raised-button color="accent" type="button" (click)="cancel()">Close</button>
+      </mat-dialog-actions>
+
+    </form>
+  </mat-dialog-content>
+</mat-card>

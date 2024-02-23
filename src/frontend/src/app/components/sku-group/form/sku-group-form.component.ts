@@ -9,52 +9,39 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { Sku } from '@app/classes/sku';
-import { Transaction } from '@app/classes/transaction';
-import { Check } from '@app/classes/check';
+import { SkuGroup } from '@app/classes/sku-group';
 import { MatSelectModule } from '@angular/material/select';
 
-export interface CheckFormData {
-  check: Check;
-  transactionsList:  Transaction[];
-  skuList:  Sku[];
+export interface SkuFormData {
+  skuGroup: SkuGroup;
   isEditOnly: boolean;
 };
 
 @Component({
-  selector: 'app-checks-form',
-  templateUrl: './checks-form.component.html',
+  selector: 'app-sku-group-form',
+  templateUrl: './sku-group-form.component.html',
   imports: [CommonModule, ReactiveFormsModule, MatCardModule, MatButtonModule, MatDialogActions, MatDialogContent, MatToolbarModule, MatInputModule, MatFormFieldModule, MatSelectModule],
   standalone: true,
-  styleUrls: ['./checks-form.component.scss']
+  styleUrls: ['./sku-group-form.component.scss']
 })
-export class ChecksFormComponent implements OnInit {
+export class SkuGroupFormComponent implements OnInit {
 
   // The input data for the dialog
-  checkForm: FormGroup;
-  transactionsList:  Transaction[];
-  skuList:  Sku[];
+  skuGroupForm: FormGroup;
   @Input('isEditOnly') isEditOnly: boolean = false;
 
   constructor(
     // The reference to the dialog
-    public dialogRef: MatDialogRef<ChecksFormComponent>,
+    public dialogRef: MatDialogRef<SkuGroupFormComponent>,
     // The data injected into the dialog
-    @Inject(MAT_DIALOG_DATA) public data: CheckFormData
+    @Inject(MAT_DIALOG_DATA) public data: SkuFormData
   ) {
     this.isEditOnly = data.isEditOnly
-    this.checkForm = new FormGroup({
-      check_id: new FormControl(this.data.check.check_id, !this.isEditOnly ? Validators.required : null),
-      transaction: new FormControl(this.data.check.transaction, [Validators.required]),
-      sku: new FormControl(this.data.check.sku, [Validators.required]),
-      sku_amount: new FormControl(this.data.check.sku_amount, [Validators.required]),
-      sku_summ: new FormControl(this.data.check.sku_summ, [Validators.required]),
-      sku_summ_paid: new FormControl(this.data.check.sku_summ_paid, [Validators.required]),
-      sku_discount: new FormControl(this.data.check.sku_discount, [Validators.required]),
+    this.skuGroupForm = new FormGroup({
+      group_id: new FormControl(this.data.skuGroup.group_id, !this.isEditOnly ? Validators.required : null),
+      group_name: new FormControl(this.data.skuGroup.group_name, [Validators.required]),
       
     });
-    this.transactionsList = data.transactionsList
-    this.skuList = data.skuList
   }
 
   ngOnInit(): void {
@@ -63,7 +50,7 @@ export class ChecksFormComponent implements OnInit {
 
   // Close the dialog and emit the updated data
   save(): void {
-    this.dialogRef.close(this.checkForm.value);
+    this.dialogRef.close(this.skuGroupForm.value);
   }
 
   // Close the dialog and emit null
