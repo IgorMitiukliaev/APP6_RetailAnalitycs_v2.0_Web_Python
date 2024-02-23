@@ -1,0 +1,71 @@
+<mat-card class="dialog">
+  <mat-toolbar class="mat-primary">
+    <h2 class="mat-h2">Edit Check</h2>
+  </mat-toolbar>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="checkForm" (ngSubmit)="save()">
+      <mat-form-field class="full-width">
+        <mat-label>Check ID</mat-label>
+        <input matInput class="full-width" type="number" id="check_id" formControlName="check_id"  [readonly]="isEditOnly">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Transaction</mat-label>
+        <mat-select id="transaction" formControlName="transaction" name="transaction" required>
+          @for (t of transactionsList.values(); track t) {
+            <mat-option [value]="t.transaction_id">{{t.transaction_store}} : {{t.transaction_datetime}}
+            </mat-option>
+          }
+          @if (checkForm.get('transaction')?.hasError('required')) {
+            <mat-error>Transaction is <strong>required</strong></mat-error>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>SKU</mat-label>
+        <mat-select id="sku" formControlName="sku" name="sku" required>
+          @for (sku of skuList.values(); track sku) {
+            <mat-option [value]="sku.sku_id">{{sku.sku_name}}
+            </mat-option>
+          }
+          @if (checkForm.get('customer')?.hasError('required')) {
+            <mat-error>SKU is <strong>required</strong></mat-error>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" id="sku_amount" formControlName="sku_amount" required>
+        @if (checkForm.get('sku_amount')?.hasError('required')) {
+          <mat-error>Amount value is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Sum</mat-label>
+        <input matInput type="number" id="sku_summ" formControlName="sku_summ" required>
+        @if (checkForm.get('sku_summ')?.hasError('required')) {
+          <mat-error>SKU sum value is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Sum paid</mat-label>
+        <input matInput type="number" id="sku_summ_paid" formControlName="sku_summ_paid" required>
+        @if (checkForm.get('sku_summ_paid')?.hasError('required')) {
+          <mat-error>SKU sum paid value is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Discount</mat-label>
+        <input matInput type="number" id="sku_discount" formControlName="sku_discount" required>
+        @if (checkForm.get('sku_discount')?.hasError('required')) {
+          <mat-error>SKU discount value is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="checkForm.invalid">Submit</button>
+        <button mat-raised-button color="accent" type="button" (click)="cancel()">Close</button>
+      </mat-dialog-actions>
+
+    </form>
+  </mat-dialog-content>
+</mat-card>

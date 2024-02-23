@@ -10,7 +10,7 @@ import { AuthService } from './auth/auth.service';
   providedIn: 'root'
 })
 export class SkuService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/sku`;
+  private apiUrl: string = `${environment.apiUrl}/data/sku`;
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Sku array

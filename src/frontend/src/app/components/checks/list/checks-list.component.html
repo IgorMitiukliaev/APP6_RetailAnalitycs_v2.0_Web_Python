@@ -1,0 +1,66 @@
+<div class="table-toolbar">
+  @if (userCanAdd()) {
+    <button mat-flat-button class="table-toolbar-button" color="primary" (click)="newItem()">New Item</button>
+  }
+</div>
+<table mat-table [dataSource]="checksList" class="data-table">
+
+    <ng-container matColumnDef="check_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.check_id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="transaction">
+      <th mat-header-cell *matHeaderCellDef> Transaction </th>
+      <td mat-cell *matCellDef="let element">
+        @if (transactionsList.get(element.transaction) == undefined) {
+          n/a
+
+        }
+        @else if (personalDataList.get(transactionsList.get(element.transaction)!.customer_card) == undefined) {
+          missing_customer | {{transactionsList.get(element.transaction)?.transaction_datetime}}
+        }
+        @else {
+          {{ personalDataList.get(transactionsList.get(element.transaction)!.customer_card)?.customer_name}} {{transactionsList.get(element.transaction)?.transaction_datetime}}
+        }
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef> Sku </th>
+      <td mat-cell *matCellDef="let element"> {{skuList.get(element.sku)?.sku_name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku_amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku_summ">
+      <th mat-header-cell *matHeaderCellDef> Sum </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_summ}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku_summ_paid">
+      <th mat-header-cell *matHeaderCellDef> Sum paid </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_summ_paid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku_discount">
+      <th mat-header-cell *matHeaderCellDef> Discount </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_discount}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element" >
+          @if (userCanChange()) {
+            <button mat-flat-button (click)="edit(element)">Edit</button>
+          }
+          @if (userCanDelete()) {
+            <button mat-flat-button (click)="deleteItem(element)" color="warn" >Delete</button> 
+          }
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">text</tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

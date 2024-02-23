@@ -10,7 +10,7 @@ import { AuthService } from './auth/auth.service';
   providedIn: 'root'
 })
 export class StoreService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/stores`;
+  private apiUrl: string = `${environment.apiUrl}/data/stores`;
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Store array

@@ -24,6 +24,11 @@ import { ErrorDialogComponent } from '@app/components/error-dialog/error-dialog.
 export class RetailApiServiceService {
   personalData: BehaviorSubject<Map<number, PersonalData>> = new BehaviorSubject<Map<number, PersonalData>>(new Map<number, PersonalData>())
   cards: BehaviorSubject<Map<number, Card>> = new BehaviorSubject<Map<number, Card>>(new Map<number, Card>())
+  checks: BehaviorSubject<Map<number, Check>> = new BehaviorSubject<Map<number, Check>>(new Map<number, Check>())
+  skuGroups: BehaviorSubject<Map<number, SkuGroup>> = new BehaviorSubject<Map<number, SkuGroup>>(new Map<number, SkuGroup>())
+  sku: BehaviorSubject<Map<number, Sku>> = new BehaviorSubject<Map<number, Sku>>(new Map<number, Sku>())
+  stores: BehaviorSubject<Map<number, Store>> = new BehaviorSubject<Map<number, Store>>(new Map<number, Store>())
+  transactions: BehaviorSubject<Map<number, Transaction>> = new BehaviorSubject<Map<number, Transaction>>(new Map<number, Transaction>())
 
   constructor(
     private http: HttpClient,
@@ -143,8 +148,23 @@ export class RetailApiServiceService {
   // CHECKS
   //
   // A method that retrieves Check data
-  getChecks(): Observable<Check[]> {
-    return this.checksService.getChecks();
+  fetchChecks(): void {
+    this.checksService.getChecks().subscribe({
+      next: data => {
+        const dict = new Map<number, Check>()
+        data.forEach( (element) => {
+          dict.set(element.check_id, element)
+        });
+        this.checks.next(dict);
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+  }
+
+  getChecks() : Observable<Map<number, Check>> {
+    return this.checks.asObservable();
   }
 
   // A method that creates new entry with given data
@@ -182,8 +202,23 @@ export class RetailApiServiceService {
   // SKU GROUP
   //
   // A method that retrieves SkuGroup data
-  getSkuGroups(): Observable<SkuGroup[]> {
-    return this.skuGroupService.getSkuGroups();
+  fetchSkuGroups(): void {
+    this.skuGroupService.getSkuGroups().subscribe({
+      next: data => {
+        const dict = new Map<number, SkuGroup>()
+        data.forEach( (element) => {
+          dict.set(element.group_id, element)
+        });
+        this.skuGroups.next(dict);
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+  }
+
+  getSkuGroups() : Observable<Map<number, SkuGroup>> {
+    return this.skuGroups.asObservable();
   }
 
   // A method that creates new entry with given data
@@ -218,11 +253,26 @@ export class RetailApiServiceService {
     return this.skuGroupService.canDelete();
   }
   //
-  // SKU GROUP
+  // SKU
   //
   // A method that retrieves Sku data
-  getSkus(): Observable<Sku[]> {
-    return this.skuService.getSkus();
+  fetchSkus(): void {
+    this.skuService.getSkus().subscribe({
+      next: data => {
+        const dict = new Map<number, Sku>()
+        data.forEach( (element) => {
+          dict.set(element.sku_id, element)
+        });
+        this.sku.next(dict);
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+  }
+
+  getSkus() : Observable<Map<number, Sku>> {
+    return this.sku.asObservable();
   }
 
   // A method that creates new entry with given data
@@ -260,8 +310,23 @@ export class RetailApiServiceService {
   // STORES
   //
   // A method that retrieves Store data
-  getStores(): Observable<Store[]> {
-    return this.storeService.getStores();
+  fetchStores(): void {
+    this.storeService.getStores().subscribe({
+      next: data => {
+        const dict = new Map<number, Store>()
+        data.forEach( (element) => {
+          dict.set(element.transaction_store_id, element)
+        });
+        this.stores.next(dict);
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+  }
+
+  getStores() : Observable<Map<number, Store>> {
+    return this.stores.asObservable();
   }
 
   // A method that creates new entry with given data
@@ -299,8 +364,23 @@ export class RetailApiServiceService {
   // TRANSACTIONS
   //
   // A method that retrieves Transaction data
-  getTransactions(): Observable<Transaction[]> {
-    return this.transactionService.getTransactions();
+  fetchTransactions(): void {
+    this.transactionService.getTransactions().subscribe({
+      next: data => {
+        const dict = new Map<number, Transaction>()
+        data.forEach( (element) => {
+          dict.set(element.transaction_id, element)
+        });
+        this.transactions.next(dict);
+      },
+      error: error => {
+        this.dialog.open(ErrorDialogComponent, {data: error});
+      }
+    })
+  }
+
+  getTransactions() : Observable<Map<number, Transaction>> {
+    return this.transactions.asObservable();
   }
 
   // A method that creates new entry with given data

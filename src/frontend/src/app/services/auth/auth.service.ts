@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, skip } from 'rxjs';
 import { environment } from '../../../environments/environment'
@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit  {
+export class AuthService {
   private isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private userName: BehaviorSubject<string> = new BehaviorSubject<string>("");
   private apiUrl: string = `${environment.apiUrl}/auth`;
@@ -18,11 +18,10 @@ export class AuthService implements OnInit  {
   public isLoggedIn$: Observable<boolean> = this.isLoggedIn.asObservable()
   public userName$: Observable<string> = this.userName.asObservable()
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private cookieService: CookieService) {}
-
-  ngOnInit() {
-    this.tryLoadAuthFromCache();
+  constructor(private http: HttpClient, private dialog: MatDialog, private cookieService: CookieService) {
+    // this.tryLoadAuthFromCache(); TODO!
   }
+
 
   login(username: string, password: string): Observable<any> {
     const response: Observable<any> = this.http.post(`${this.apiUrl}/`, { username, password })
@@ -42,7 +41,7 @@ export class AuthService implements OnInit  {
 
     return response.pipe(
       map((response: any) => {
-        if (response.status === 200) {
+        if (response) {
           return true;
         } else {
           return false;

@@ -10,7 +10,7 @@ import { AuthService } from './auth/auth.service';
   providedIn: 'root'
 })
 export class ChecksService {
-  private apiUrl: string = `${environment.apiUrl}/data/api/checks`;
+  private apiUrl: string = `${environment.apiUrl}/data/checks`;
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   // A method that returns an observable of Check array
