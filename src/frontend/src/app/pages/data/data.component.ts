@@ -6,11 +6,12 @@ import { ChecksListComponent } from '@app/components/checks/list/checks-list.com
 import { PersonalDataListComponent } from '@app/components/personal-data/personal-data-list/personal-data-list.component';
 import { SkuGroupListComponent } from '@app/components/sku-group/list/sku-group-list.component';
 import { SkuListComponent } from '@app/components/sku/list/sku-list.component';
+import { StoreListComponent } from '@app/components/stores/list/store-list.component';
 
 @Component({
   selector: 'app-data',
   standalone: true,
-  imports: [MatCardModule, MatTabsModule, PersonalDataListComponent, CardsListComponent, ChecksListComponent, SkuGroupListComponent, SkuListComponent],
+  imports: [MatCardModule, MatTabsModule, PersonalDataListComponent, CardsListComponent, ChecksListComponent, SkuGroupListComponent, SkuListComponent, StoreListComponent],
   templateUrl: './data.component.html',
   styleUrl: './data.component.scss'
 })

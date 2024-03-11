@@ -1,0 +1,46 @@
+<div class="table-toolbar">
+  @if (userCanAdd()) {
+    <button mat-flat-button class="table-toolbar-button" color="primary" (click)="newItem()">New Item</button>
+  }
+</div>
+<table mat-table [dataSource]="storeList" class="data-table">
+
+    <ng-container matColumnDef="transaction_store_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.transaction_store_id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef> SKU </th>
+      <td mat-cell *matCellDef="let element">
+        @if (skusList.get(element.sku) == undefined) {
+          n/a
+        }
+        @else {
+         {{skusList.get(element.sku)?.sku_name}}
+        }
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="sku_retail_price">
+      <th mat-header-cell *matHeaderCellDef> Retail price </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_retail_price}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sku_purchase_price">
+      <th mat-header-cell *matHeaderCellDef> Purchase price </th>
+      <td mat-cell *matCellDef="let element"> {{element.sku_purchase_price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element" >
+          @if (userCanChange()) {
+            <button mat-flat-button (click)="edit(element)">Edit</button>
+          }
+          @if (userCanDelete()) {
+            <button mat-flat-button (click)="deleteItem(element)" color="warn" >Delete</button> 
+          }
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">text</tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,47 @@
+<mat-card class="dialog">
+  <mat-toolbar class="mat-primary">
+    <h2 class="mat-h2">Edit SKU</h2>
+  </mat-toolbar>
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="storeForm" (ngSubmit)="save()">
+      <mat-form-field class="full-width">
+        <mat-label>Store ID</mat-label>
+        <input matInput class="full-width" type="number" id="transaction_store_id" formControlName="transaction_store_id"  [readonly]="isEditOnly">
+        @if (storeForm.get('transaction_store_id')?.hasError('required')) {
+          <mat-error>ID is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>SKU</mat-label>
+        <mat-select id="sku" formControlName="sku" name="sku" required>
+          @for (t of skusList; track t) {
+            <mat-option [value]="t.sku_id"> {{t.sku_name}}
+            </mat-option>
+          }
+        </mat-select>
+        @if (storeForm.get('sku')?.hasError('required')) {
+          <mat-error>SKU is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Retail price</mat-label>
+        <input matInput id="sku_retail_price" formControlName="sku_retail_price" required>
+        @if (storeForm.get('sku_retail_price')?.hasError('required')) {
+          <mat-error>Retail price is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Purchase price</mat-label>
+        <input matInput id="sku_purchase_price" formControlName="sku_purchase_price" required>
+        @if (storeForm.get('sku_purchase_price')?.hasError('required')) {
+          <mat-error>Purchase price is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="storeForm.invalid">Submit</button>
+        <button mat-raised-button color="accent" type="button" (click)="cancel()">Close</button>
+      </mat-dialog-actions>
+
+    </form>
+  </mat-dialog-content>
+</mat-card>
