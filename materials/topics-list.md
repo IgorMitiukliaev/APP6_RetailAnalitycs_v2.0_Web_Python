@@ -1,17 +1,17 @@
-Hello, student of School21!😉
+Hello, School21 student! 😉
 
-To make it easier for you to navigate the material, we have prepared a list of topics that you will learn in this project.
+To help you navigate through the material, we have prepared a list of topics that you will learn in this project.
 
-We will study:
+We will learn:
 
-- MVC pattern for web applications;
-- authentication in web application;
+- MVC patterns for web applications;
+- Authentication in web applications;
 - HTML;
 - CSS;
 - JS;
-- ORM (Model/Database First, Code First);
-- logging;
+- ORM (model/database first, code first);
+- Logging;
 - docker/docker-compose (for bonus part);
 - SPA (for bonus part).
 
-Now, knowing what awaits you in this project, you can slowly begin to study the topics listed above.😇
+Now that you know what to expect in this project, you can slowly start studying the topics listed above. 😇
