@@ -67,7 +67,7 @@ In this project, you will implement a web interface for the SQL3 project. You wi
 
 ### ORM
 
-**ORM (Object-Relational Mapping) is a programming technology that combines databases with the concepts of object-oriented programming languages to create a "virtual object database". \
+**ORM (Object-Relational Mapping)** is a programming technology that combines databases with the concepts of object-oriented programming languages to create a "virtual object database". \
 In other words, an ORM is a set of classes that add another layer of abstraction to the tables stored in the database. This abstraction allows you to work with database objects as objects of the programming language you are using, that is, to work with data in terms of classes rather than data tables.
 
 Model classes, fields, and entity instances are all mapped to the database concept.
@@ -80,7 +80,7 @@ Model classes, fields, and entity instances are all mapped to the database conce
 
 Within ORM there are 2 approaches: *Code first* and *Model/Database first*.
 
-In **Code first**, the entity classes are written first and the database schemas are adapted to the new code state. Every database undergoes changes during its lifetime: new tables are added, old ones are deleted, and some are modified. Changes to the database are made using the migration mechanism. **Migration is a description of the changes you want to make to the database tables.
+In **Code first**, the entity classes are written first and the database schemas are adapted to the new code state. Every database undergoes changes during its lifetime: new tables are added, old ones are deleted, and some are modified. Changes to the database are made using the migration mechanism. **Migration** is a description of the changes you want to make to the database tables.
 
 In **Model First**, you develop or modify the database first (by running SQL queries or building queries with ORM tools), and the entities are generated from it. For example, to add a new field, simply add a new column.
 
@@ -128,7 +128,7 @@ You need to implement a web application for the SQL3 project.
   - After any type of table modification, the modified table must be displayed to the user.
   - Import and export data for each table to/from files with *.csv* extension.
 
-- The "Suggestions" section must contain subsections that allow the following functionality to be supported through the GUI:
+- The *"Suggestions"* section must contain subsections that allow the following functionality to be supported through the GUI:
   - Implement the ability to calculate all personalized offers and export them to a .csv file.
   - When performing calculations, it is necessary to call functions implemented in the database.
   - If it is necessary to enter parameters to perform a procedure or function, the GUI should provide a form for entering data.
@@ -138,7 +138,7 @@ You need to implement a web application for the SQL3 project.
 
 ## Part 2. Authorization
 
-It is necessary to implement user authorization.
+You need to implement user authorization.
 
 The application must support 2 roles: *Administrator* and *Visitor* and grant certain rights according to the role:
 
