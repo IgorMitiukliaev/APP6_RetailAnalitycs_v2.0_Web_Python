@@ -88,7 +88,6 @@ It makes sense to use ORM in large projects that use databases, but some program
 
 ORM systems are present in every major framework: Laravel, Entity Framework Core, Django ORM, SQLAlchemy.
 
-
 ## Chapter III
 
 You need to implement a web application for the SQL3 project.
@@ -144,11 +143,11 @@ The application must support 2 roles: *Administrator* and *Visitor* and grant ce
 
 ### Administrator
 
-- The administrator has full rights to edit and view any information, start and stop the processing.
+- Has full rights to edit and view any information, start and stop the processing.
 
 ### Visitor
 
-- Only view information from all tables.
+- Only views information from all tables.
 
 If the data were incorrect, the application should handle such a situation (give an error about the incorrectness of the entered data and offer to try again).
 
@@ -176,7 +175,6 @@ Prepare docker-compose to start the entire application. Only the docker-containe
 ## Part 5. Bonus. SPA-frontend
 
 Implement the SPA-frontend in any component framework (Vue/React/Angular).
-
 
 ## Chapter IV
 
